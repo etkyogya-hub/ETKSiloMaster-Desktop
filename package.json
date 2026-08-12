@@ -1,0 +1,22 @@
+{
+  "name": "etk-silo-master",
+  "version": "18.0.0",
+  "description": "ETK Master Silo & AI Enterprise Pipeline Desktop Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "build-win": "electron-packager . ETKSiloMaster --platform=win32 --arch=x64 --out=dist --icon=icon.ico --overwrite"
+  },
+  "keywords": [
+    "seo",
+    "silo",
+    "adsense",
+    "enterprise"
+  ],
+  "author": "ETK Enterprise",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-packager": "^17.1.2"
+  }
+}
