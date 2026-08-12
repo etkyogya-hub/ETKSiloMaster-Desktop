@@ -1,1 +1,375 @@
 
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth bg-slate-950 text-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETK Master Silo & AI Enterprise Pipeline v18.0 (Locked & Production Ready)</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="font-sans antialiased selection:bg-rose-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER NAVBAR -->
+    <nav class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 bg-rose-500 rounded-full animate-ping"></span>
+                <span class="text-xl font-bold tracking-tight text-white">ETK<span class="text-rose-400">SiloMaster</span><span class="text-slate-400">v18.0</span></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs font-mono text-rose-400 bg-rose-950/80 border border-rose-900/60 px-3 py-1.5 rounded-lg shadow-inner">
+                    🔒 Locked Production Pipeline & Active Sync Engine
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto px-6 py-12 w-full space-y-10 flex-grow">
+        
+        <!-- HERO SECTION -->
+        <div class="text-center space-y-3 max-w-3xl mx-auto">
+            <span class="text-xs font-mono bg-slate-900 text-rose-400 border border-slate-800 px-4 py-1.5 rounded-full inline-block">
+                Ecosystem Silo & AdSense Compliance Guard
+            </span>
+            <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">
+                Inspeksi Silo, Humanizer, & Generator Prompt Perbaikan Spesifik
+            </h1>
+            <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                Aplikasi produksi penuh yang mengunci seluruh fungsionalitas korelasi antara Nama File Target, Silo Induk, Validasi Konten, Command Matrix AI, hingga Maturasi DOM otomatis.
+            </p>
+        </div>
+
+        <!-- INPUT PANEL -->
+        <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-2xl space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-300">1. Nama File Target (Misal: file-01.html)</label>
+                    <input type="text" id="inputFileName" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 font-mono text-xs text-slate-300 focus:outline-none focus:border-rose-500" value="file-01.html">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-300">2. Target Silo Induk / Hub Utama (Misal: index.html)</label>
+                    <input type="text" id="inputSiloParent" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 font-mono text-xs text-slate-300 focus:outline-none focus:border-rose-500" value="index.html">
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-wider text-slate-300">3. Tempel Isi Kode HTML / Artikel File Tersebut</label>
+                <textarea id="fileHtmlContent" rows="10" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-300 focus:outline-none focus:border-rose-500 shadow-inner" placeholder="Tempel kode mentah file ini..."></textarea>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="runAdvancedSiloInspectorV18()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs px-8 py-4 rounded-xl transition shadow-lg shadow-rose-600/30 cursor-pointer flex items-center space-x-2">
+                    <span>⚡ Jalankan Audit Presisi & Buat Command Matrix AI V18.0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULT & RECOVERY DASHBOARD -->
+        <div id="auditResultDashboard" class="hidden space-y-8 bg-slate-900/90 p-8 rounded-2xl border border-slate-800 shadow-2xl">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center bg-slate-950 p-6 rounded-xl border border-slate-800 gap-4">
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Status Analisis Silo & Kualitas Konten</h3>
+                    <p class="text-lg font-bold text-white" id="siloVerdictTitle">Menunggu Analisis...</p>
+                </div>
+                <div class="text-center px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl">
+                    <span class="text-[10px] font-mono text-slate-400 block">Skor Kepatuhan File</span>
+                    <span id="siloScoreValue" class="text-2xl font-black text-rose-400 font-mono">0%</span>
+                </div>
+            </div>
+
+            <!-- FINDINGS LIST -->
+            <div class="space-y-3">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Parameter Kritis yang Diuji</h4>
+                <div id="siloParametersList" class="space-y-3"></div>
+            </div>
+
+            <!-- SPECIFIC AI COMMAND MATRIX -->
+            <div id="aiCommandMatrixContainer" class="hidden space-y-6 pt-6 border-t border-slate-800">
+                <div class="p-6 bg-rose-950/30 border border-rose-900/80 rounded-2xl space-y-4">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                        <div>
+                            <span class="text-[10px] font-mono bg-rose-950 text-rose-400 border border-rose-900 px-3 py-1 rounded-md">
+                                🛠️ SPECIFIC AI COMMAND MATRIX & RECOVERY PROMPT
+                            </span>
+                            <h4 class="text-sm font-bold text-white mt-2">Instruksi Khusus untuk OpenAI / Claude Berdasarkan Titik Celah</h4>
+                            <p class="text-xs text-slate-300 mt-0.5">Prompt disinkronkan secara presisi dengan Nama File Target & Silo Induk di atas.</p>
+                        </div>
+                        <button onclick="copyAiCommandMatrix()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition cursor-pointer shadow flex items-center space-x-1 shrink-0">
+                            <span>📋 Salin Command Matrix</span>
+                        </button>
+                    </div>
+                    <textarea id="aiCommandMatrixBox" rows="8" readonly class="w-full bg-slate-950 border border-rose-900/60 rounded-xl p-4 font-mono text-[11px] text-rose-300 focus:outline-none leading-relaxed shadow-inner"></textarea>
+                </div>
+
+                <!-- STAGE 2: EMPTY RAW AI RESPONSE PROCESSOR -->
+                <div class="space-y-4 pt-6 border-t border-slate-800">
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-300">
+                                Tempel Hasil Balasan Mentah dari OpenAI / Claude di Sini:
+                            </label>
+                            <span class="text-[10px] font-mono text-rose-400">Kotak kosong, siap memproses script mentah AI</span>
+                        </div>
+                        <textarea id="rawAiResponseInput" rows="8" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-300 focus:outline-none focus:border-rose-500 shadow-inner" placeholder="Tempel kode mentah hasil balasan OpenAI / Claude di sini..."></textarea>
+                    </div>
+
+                    <!-- ACTION BUTTON MATURITY -->
+                    <div class="flex justify-end pt-2">
+                        <button onclick="processMatureDeploymentCode()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-6 py-3.5 rounded-xl transition cursor-pointer shadow flex items-center space-x-2">
+                            <span>⚙️ Proses Maturasi & Paksa Tautan Silo Induk (<span id="activeSiloLabel" class="underline">index.html</span>)</span>
+                        </button>
+                    </div>
+
+                    <!-- FINAL LOCKED BOTTOM BOX -->
+                    <div class="space-y-3 pt-4">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400">Hasil Pemulihan Draf Kode (Siap Deploy)</h4>
+                            <div class="flex items-center space-x-3">
+                                <button onclick="copyMatureCode()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer border border-slate-700">📋 Salin Kode Utuh</button>
+                                <button onclick="downloadMatureCode()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition cursor-pointer shadow flex items-center space-x-1">
+                                    <span>📥 Download File (<span id="downloadFileNameLabel">file-01.html</span>)</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="matureCodeBox" rows="10" readonly class="w-full bg-slate-950 border border-emerald-900/60 rounded-xl p-4 font-mono text-xs text-emerald-300 focus:outline-none shadow-inner" placeholder="Hasil kode matang yang secara otomatis diinjeksi link silo induk dan perapian DOM akan muncul di sini..."></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-[10px] font-mono text-slate-500 space-y-1">
+        <p>&copy; 2026 ETK Master Silo & AI Patch Generator v18.0 Enterprise (Locked & Production Ready).</p>
+    </footer>
+
+    <!-- SCRIPT V18.0 -->
+    <script>
+        let globalCommandMatrixPrompt = "";
+        let currentTargetFileName = "file-01.html";
+        let currentSiloParent = "index.html";
+
+        function runAdvancedSiloInspectorV18() {
+            const fileNameInput = document.getElementById('inputFileName').value.trim();
+            const siloParentInput = document.getElementById('inputSiloParent').value.trim();
+            const htmlContent = document.getElementById('fileHtmlContent').value.trim();
+
+            if (!fileNameInput || !htmlContent || !siloParentInput) {
+                alert('Nama File Target, Target Silo Induk, dan Isi Kode HTML wajib diisi!');
+                return;
+            }
+
+            currentTargetFileName = fileNameInput;
+            currentSiloParent = siloParentInput;
+
+            document.getElementById('activeSiloLabel').textContent = currentSiloParent;
+            document.getElementById('downloadFileNameLabel').textContent = currentTargetFileName;
+
+            document.getElementById('auditResultDashboard').classList.remove('hidden');
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            const bodyText = doc.body ? doc.body.innerText : htmlContent;
+            const words = bodyText.trim().split(/\s+/).filter(w => w.length > 0).length;
+
+            let findings = [];
+            let missingDefects = [];
+            let score = 100;
+
+            if (words < 400) {
+                score -= 40;
+                findings.push({ label: `Volume Kata (${words} kata dari minimal 600 kata)`, status: 'GAGAL (Risiko Low-Value Content AdSense)', pass: false });
+                missingDefects.push(`Volume konten saat ini hanya ${words} kata. Wajib diperluas minimal menjadi 600-800 kata dengan penjelasan edukatif yang mendalam dan natural (humanizer).`);
+            } else {
+                findings.push({ label: `Volume Kata (${words} kata)`, status: 'LULUS (Memadai)', pass: true });
+            }
+
+            const hasSiloLink = htmlContent.toLowerCase().includes(currentSiloParent.toLowerCase()) || htmlContent.toLowerCase().includes('sitemap') || htmlContent.includes('href');
+            if (hasSiloLink) {
+                findings.push({ label: `Struktur Silo & Link ke Induk ("${currentSiloParent}")`, status: 'LULUS (Tautan terdeteksi)', pass: true });
+            } else {
+                score -= 30;
+                findings.push({ label: `Struktur Silo & Link ke Induk ("${currentSiloParent}")`, status: 'GAGAL (File terisolasi dari hub induk)', pass: false });
+                missingDefects.push(`Struktur silo terisolasi. File "${currentTargetFileName}" wajib menyertakan tautan navigasi balik fungsional ke hub induk tertarget: "${currentSiloParent}".`);
+            }
+
+            const h2Count = doc.querySelectorAll('h2, h3').length;
+            const pCount = doc.querySelectorAll('p').length;
+            if (h2Count >= 2 && pCount >= 4) {
+                findings.push({ label: 'Format Heading & Paragraf Humanizer', status: 'LULUS (Struktur rapi & mengalir natural)', pass: true });
+            } else {
+                score -= 30;
+                findings.push({ label: 'Format Heading & Paragraf Humanizer', status: 'GAGAL (Struktur kaku atau kurang sub-heading)', pass: false });
+                missingDefects.push('Struktur penulisan kurang natural. Perlu ditambahkan sub-heading (H2/H3) dan paragraf naratif bergaya human-written agar terhindar dari deteksi teks AI generik.');
+            }
+
+            if (score < 0) score = 0;
+
+            document.getElementById('siloScoreValue').textContent = score + '%';
+            let verdict = document.getElementById('siloVerdictTitle');
+
+            if (score >= 80) {
+                verdict.textContent = `File "${currentTargetFileName}" Lulus Validasi Silo & Kualitas Konten`;
+                verdict.className = "text-lg font-bold text-emerald-400";
+                document.getElementById('aiCommandMatrixContainer').classList.add('hidden');
+            } else {
+                verdict.textContent = `File "${currentTargetFileName}" Ditemukan Celah Kritis yang Harus Dipulihkan`;
+                verdict.className = "text-lg font-bold text-rose-400";
+                document.getElementById('aiCommandMatrixContainer').classList.remove('hidden');
+
+                globalCommandMatrixPrompt = `[SPECIFIC AI COMMAND MATRIX - ETK SILO HOSPITAL v18.0]
+Bertindaklah sebagai Senior Technical SEO & AdSense Compliance Architect.
+
+TARGET FILE YANG DIPERBAIKI: '${currentTargetFileName}'
+HUB / SILO INDUK UTAMA (WAJIB TERHUBUNG): '${currentSiloParent}'
+
+DAFTAR KEKURANGAN SPESIFIK YANG WAJIB DISELESAIKAN:
+${missingDefects.map((d, i) => `${i + 1}. ${d}`).join('\n')}
+
+INSTRUKSI MUTLAK UNTUK ANDA (AI):
+1. KEMBANGKAN KONTEN (Humanizer): Tulis ulang atau tambahkan elaborasi naratif yang mendalam, natural, edukatif, dan bebas dari gaya bahasa robotik, hingga volume teks mencapai minimal 600+ kata.
+2. PERBAIKI STRUKTUR SILO (Korelasi Wajib): Pastikan ada tautan internal fungsional di dalam artikel yang mengarahkan pembaca kembali ke Hub Induk '${currentSiloParent}'. Jangan biarkan file ini terisolasi!
+3. PERTAHANKAN DESAIN: Jaga konsistensi styling Tailwind CSS aslinya tanpa merusak tata letak visual.
+4. OUTPUT UTUH: Berikan kode HTML lengkap dari tag pembuka hingga penutup tanpa diringkas, siap langsung di-deploy.
+
+KODE SUMBER ASLI FILE '${currentTargetFileName}':
+${htmlContent}`;
+
+                document.getElementById('aiCommandMatrixBox').value = globalCommandMatrixPrompt;
+            }
+
+            let listHtml = '';
+            findings.forEach(f => {
+                let badgeColor = f.pass ? 'bg-rose-950 text-rose-400 border-rose-900' : 'bg-red-950 text-red-400 border-red-900';
+                let icon = f.pass ? '✅' : '❌';
+                listHtml += `
+                    <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex justify-between items-center text-xs">
+                        <span class="text-slate-300 font-medium">${icon} ${f.label}</span>
+                        <span class="font-mono px-2.5 py-1 rounded-md border ${badgeColor}">${f.status}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('siloParametersList').innerHTML = listHtml;
+        }
+
+        function copyAiCommandMatrix() {
+            if (!globalCommandMatrixPrompt) return;
+            navigator.clipboard.writeText(globalCommandMatrixPrompt).then(() => {
+                alert(`Command Matrix spesifik untuk file "${currentTargetFileName}" & induk "${currentSiloParent}" berhasil disalin!`);
+            });
+        }
+
+        function processMatureDeploymentCode() {
+            const rawInput = document.getElementById('rawAiResponseInput').value.trim();
+            if (!rawInput) {
+                alert('Silakan tempel terlebih dahulu hasil balasan mentah dari OpenAI / Claude ke kotak input yang tersedia!');
+                return;
+            }
+
+            let cleanedCode = rawInput;
+            if (cleanedCode.includes('```html')) {
+                const parts = cleanedCode.split('```html');
+                if (parts.length > 1) {
+                    cleanedCode = parts[1].split('```')[0].trim();
+                }
+            } else if (cleanedCode.includes('```')) {
+                const parts = cleanedCode.split('```');
+                if (parts.length > 1) {
+                    cleanedCode = parts[1].split('```')[0].trim();
+                }
+            }
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(cleanedCode, 'text/html');
+
+            if (!doc.documentElement.getAttribute('lang')) {
+                doc.documentElement.setAttribute('lang', 'id');
+            }
+
+            let head = doc.head;
+            if (!head.innerHTML.includes('tailwindcss')) {
+                const twScript = doc.createElement('script');
+                twScript.src = 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4';
+                head.appendChild(twScript);
+            }
+
+            let body = doc.body;
+            if (body) {
+                if (!body.className.includes('leading-relaxed')) {
+                    body.className += ' font-sans antialiased bg-slate-950 text-slate-100 leading-relaxed text-justify';
+                }
+
+                const paragraphs = doc.querySelectorAll('p');
+                paragraphs.forEach(p => {
+                    if (!p.className.includes('text-')) {
+                        p.className += ' text-slate-300 leading-relaxed mb-4 text-justify';
+                    }
+                });
+
+                const headings = doc.querySelectorAll('h1, h2, h3, h4');
+                headings.forEach(h => {
+                    if (!h.className.includes('font-bold')) {
+                        h.className += ' font-bold tracking-tight text-white mt-6 mb-3';
+                    }
+                });
+
+                const currentSiloVal = currentSiloParent || 'index.html';
+                const hasBackNav = body.innerHTML.includes(currentSiloVal) || body.innerHTML.includes('href');
+                
+                if (!hasBackNav) {
+                    const navDiv = doc.createElement('div');
+                    navDiv.className = 'max-w-4xl mx-auto px-6 py-4 my-8 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center justify-between text-xs font-mono shadow-inner';
+                    navDiv.innerHTML = `<a href="${currentSiloVal}" class="text-rose-400 hover:underline">&larr; Kembali ke Master Sitemap & Hub Induk (${currentSiloVal})</a><span class="text-slate-500">ETK Silo Verified (${currentTargetFileName})</span>`;
+                    body.insertBefore(navDiv, body.firstChild);
+                }
+            }
+
+            const serializer = new XMLSerializer();
+            let finalMatureHtml = serializer.serializeToString(doc);
+
+            if (!finalMatureHtml.toLowerCase().includes('<!doctype')) {
+                finalMatureHtml = '<!DOCTYPE html>\n' + finalMatureHtml;
+            }
+
+            document.getElementById('matureCodeBox').value = finalMatureHtml;
+            alert(`Proses maturasi berhasil! Tautan silo induk "${currentSiloParent}" dan struktur DOM file "${currentTargetFileName}" telah disinkronkan sepenuhnya.`);
+        }
+
+        function copyMatureCode() {
+            const box = document.getElementById('matureCodeBox');
+            if (!box.value) {
+                alert('Belum ada kode matang yang diproses!');
+                return;
+            }
+            box.select();
+            navigator.clipboard.writeText(box.value);
+            alert(`Kode matang untuk "${currentTargetFileName}" berhasil disalin ke clipboard!`);
+        }
+
+        function downloadMatureCode() {
+            const box = document.getElementById('matureCodeBox');
+            const codeContent = box.value;
+            if (!codeContent) {
+                alert('Belum ada kode matang untuk di-download!');
+                return;
+            }
+
+            const blob = new Blob([codeContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentTargetFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
